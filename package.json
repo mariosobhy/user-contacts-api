@@ -1,0 +1,27 @@
+{
+  "name": "user-contacts-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mari0000/user-contacts-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mari0000/user-contacts-api/issues"
+  },
+  "homepage": "https://github.com/Mari0000/user-contacts-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.24",
+    "nodemon": "^2.0.4",
+    "underscore": "^1.10.2",
+    "validator": "^13.1.1"
+  }
+}

@@ -3,9 +3,9 @@ const _ = require("underscore");
 
 const auth = async (req, res, next) => {
   let userRequested = {
-    authorization: req.body.authorization,
-    deviceToken: req.body.deviceToken,
-    fingerPrint: req.body.fingerPrint,
+    authorization: req.headers.authorization,
+    deviceToken: req.headers.devicetoken,
+    fingerPrint: req.headers.fingerprint,
   };
   //ToDo refactoring 
   userRequested = _.find(users, (_user) => {

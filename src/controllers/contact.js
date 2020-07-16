@@ -1,5 +1,11 @@
 const Contact = require("../models/contact");
-
+const handleRespone = (status, message, data, res) => {
+  res.status(201).send({
+    statusCode: status,
+    message: message,
+    data: data
+  });
+}
 module.exports = {
   addContact: async (req, res) => {
     const contactRequested = {
@@ -13,10 +19,7 @@ module.exports = {
     try {
       let contact = new Contact(contactRequested);
       await contact.save()
-      res.status(201).send({
-        statusCode: 201,
-        data: contact
-      });
+      handleRespone(201, "Contact created successfully.", contact, res);
     } catch (error) {
       res.status(400).send(error);
     }
@@ -26,10 +29,7 @@ module.exports = {
       const contacts = await Contact.find({
         userId: req.body.userId
       });
-      res.send({
-        statusCode: 200,
-        data: contacts
-      });
+      handleRespone(200, "Contatcs retrieved successfully.", contacts, res);
     } catch (error) {
       res.status(500).send();
     }
@@ -43,10 +43,7 @@ module.exports = {
           createdAt: "desc"
         })
         .limit(5);
-      res.status(200).send({
-        statusCode: 200,
-        data: contacts
-      });
+      handleRespone(200, "Recent contatcs retrieved successfully.", contacts, res);
     } catch (error) {
       res.status(500).send();
     }
@@ -71,10 +68,7 @@ module.exports = {
         }
       });
       const sharedContacts = contacts1.concat(contacts2);
-      res.status(200).send({
-        statusCode: 200,
-        data: contacts
-      });
+      handleRespone(200, "Shared contatcs retrieved successfully.", sharedContacts, res);
     } catch (error) {
       res.status(500).send();
     }

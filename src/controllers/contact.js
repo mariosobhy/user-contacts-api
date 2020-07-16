@@ -1,6 +1,6 @@
 const Contact = require("../models/contact");
 const handleRespone = (status, message, data, res) => {
-  res.status(201).send({
+  res.status(status).send({
     statusCode: status,
     message: message,
     data: data

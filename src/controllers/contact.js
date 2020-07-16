@@ -7,6 +7,7 @@ module.exports = {
       lastName: req.body.lastName,
       mobileNumber: req.body.mobileNumber,
       userId: req.body.userId,
+      sharedUsers: req.body.sharedUsers
     };
     try {
       let contact = new Contact(contactRequested);
@@ -42,12 +43,25 @@ module.exports = {
   },
   getSharedList: async (req, res) => {
     try {
-      const contacts = await Contact.find({
-        userId: {
-          $in: [req.body.user1Id, req.body.user2Id]
+      const contacts1 = await Contact.find({
+        userId: req.body.userId,
+        sharedUsers: {
+          $elemMatch: {
+            userId: req.body.secondUserId
+          }
         }
       });
-      res.status(200).send(contacts);
+
+      const contacts2 = await Contact.find({
+        userId: req.body.secondUserId,
+        sharedUsers: {
+          $elemMatch: {
+            userId: req.body.userId
+          }
+        }
+      });
+      const sharedContacts = contacts1.concat(contacts2);
+      res.status(200).send(sharedContacts);
     } catch (error) {
       res.status(500).send();
     }

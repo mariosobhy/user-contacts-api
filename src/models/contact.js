@@ -41,6 +41,11 @@ const contactSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  sharedUsers: [{
+    userId: {
+      type: Number
+    }
+  }]
 });
 
 const Contact = mongoose.model("Contact", contactSchema);

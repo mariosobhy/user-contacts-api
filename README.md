@@ -20,3 +20,4 @@
 - The last API (GET /contacts/getSharedList) was unclear for me for different reasons and I didn't find any data flow compatibable to get shared contacts without taking any previous action but I made an assumption
   1) So I created an array of objects called sharedUsers in Contact model
   2) then you can pass the IDs of users you want to share the contact with in (POST /contatcs/addContact) as I mentioned in postman docs
+  3) then finally you can call /contacts/getSharedList API with secondUserId to get the shared contacts between them 

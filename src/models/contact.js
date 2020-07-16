@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const contactSchema = new mongoose.Schema({
   email: {
+    unique: true,
     type: String,
     trim: true,
     required: true,
@@ -28,6 +30,7 @@ const contactSchema = new mongoose.Schema({
     default: Date.now,
   },
   mobileNumber: {
+    unique: true,
     type: String,
     trim: true,
     required: true,
@@ -47,6 +50,8 @@ const contactSchema = new mongoose.Schema({
     }
   }]
 });
+
+contactSchema.plugin(uniqueValidator);
 
 const Contact = mongoose.model("Contact", contactSchema);
 module.exports = Contact;

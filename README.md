@@ -1,6 +1,6 @@
 # README
 
-
+## Total time spent was approximately 30 min
 ## Things you may want to setup the project:
 
 - Install Node.js, mongoDb and npm
